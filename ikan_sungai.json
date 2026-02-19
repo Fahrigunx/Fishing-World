@@ -1,0 +1,202 @@
+[
+  {
+    "nama": "Ikan Wader",
+    "jenis": "Normal",
+    "minBerat": 0.1,
+    "maxBerat": 0.3,
+    "info": "Ikan kecil yang sangat lincah, enak digoreng garing.",
+    "harga": 15000,
+    "chance": 90
+  },
+  {
+    "nama": "Sampah",
+    "jenis": "Normal",
+    "minBerat": 0.3,
+    "maxBerat": 1.2,
+    "info": "Sampah bekas.",
+    "harga": 1500,
+    "chance": 96
+  },
+  {
+    "nama": "Mayat remaja",
+    "jenis": "Horor",
+    "minBerat": 40,
+    "maxBerat": 60,
+    "info": "Remaja yang malang.",
+    "harga": 0,
+    "chance": 95
+  },
+
+  {
+    "nama": "Ikan Mujair",
+    "jenis": "Normal",
+    "minBerat": 0.3,
+    "maxBerat": 1.2,
+    "info": "Ikan air tawar yang sangat umum dan mudah berkembang biak.",
+    "harga": 25000,
+    "chance": 85
+  },
+  {
+    "nama": "Ikan Nila Merah",
+    "jenis": "Normal",
+    "minBerat": 0.5,
+    "maxBerat": 2,
+    "info": "Ikan favorit konsumsi dengan sisik kemerahan yang cantik.",
+    "harga": 30000,
+    "chance": 80
+  },
+  {
+    "nama": "Ikan Mas",
+    "jenis": "Normal",
+    "minBerat": 1,
+    "maxBerat": 5,
+    "info": "Ikan air tawar klasik yang sering ditemukan di sungai tenang.",
+    "harga": 20000,
+    "chance": 75
+  },
+  {
+    "nama": "Ikan Tawes",
+    "jenis": "Normal",
+    "minBerat": 0.4,
+    "maxBerat": 1.5,
+    "info": "Memiliki tubuh pipih dan tarikan yang lumayan gesit.",
+    "harga": 35000,
+    "chance": 70
+  },
+  {
+    "nama": "Ikan Lele Lokal",
+    "jenis": "Normal",
+    "minBerat": 0.5,
+    "maxBerat": 3,
+    "info": "Ikan berkumis yang aktif mencari makan di dasar sungai.",
+    "harga": 45000,
+    "chance": 65
+  },
+  {
+    "nama": "Ikan Gabus",
+    "jenis": "Langka",
+    "minBerat": 1,
+    "maxBerat": 6,
+    "info": "Predator sungai yang kuat, dikenal karena staminanya.",
+    "harga": 75000,
+    "chance": 45
+  },
+  {
+    "nama": "Ikan Baung",
+    "jenis": "Langka",
+    "minBerat": 1,
+    "maxBerat": 8,
+    "info": "Mirip lele tapi hidup di arus deras, tarikannya sangat bertenaga.",
+    "harga": 88000,
+    "chance": 48
+  },
+  {
+    "nama": "Ikan Gurame Liar",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 7,
+    "info": "Ikan yang cerdik dan sangat tenang sebelum menyambar umpan.",
+    "harga": 95000,
+    "chance": 39
+  },
+  {
+    "nama": "Ikan Patin",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 15,
+    "info": "Kulitnya licin dan tidak bersisik, sangat kuat saat menarik senar.",
+    "harga": 100000,
+    "chance": 35
+  },
+  {
+    "nama": "Ikan Sidat (Eel)",
+    "jenis": "Langka",
+    "minBerat": 1,
+    "maxBerat": 5,
+    "info": "Bentuknya seperti ular, sangat licin dan sulit dipegang.",
+    "harga": 150000,
+    "chance": 34
+  },
+  {
+    "nama": "Ikan Betutu",
+    "jenis": "Sangat Langka",
+    "minBerat": 1,
+    "maxBerat": 4,
+    "info": "Sering disebut ikan malas, tapi harganya sangat mahal di pasar.",
+    "harga": 200000,
+    "chance": 32
+  },
+  {
+    "nama": "Ikan Belida",
+    "jenis": "Sangat Langka",
+    "minBerat": 2,
+    "maxBerat": 10,
+    "info": "Ikan purba dengan bentuk tubuh unik seperti pisau.",
+    "harga": 320000,
+    "chance": 29
+  },
+  {
+    "nama": "Ikan Jelawat",
+    "jenis": "Sangat Langka",
+    "minBerat": 3,
+    "maxBerat": 20,
+    "info": "Raja sungai arus deras, memiliki sisik yang besar dan keras.",
+    "harga": 550000,
+    "chance": 27
+  },
+  {
+    "nama": "Ikan Kelah (Mahseer Merah)",
+    "jenis": "Eksklusif",
+    "minBerat": 5,
+    "maxBerat": 30,
+    "info": "Ikan sultan sungai pegunungan, tenaga tarikannya luar biasa.",
+    "harga": 550000,
+    "chance": 25
+  },
+  {
+    "nama": "Ikan Toman Raksasa",
+    "jenis": "Sangat Langka",
+    "minBerat": 5,
+    "maxBerat": 25,
+    "info": "Predator paling agresif di air tawar, giginya sangat tajam.",
+    "harga": 600000,
+    "chance": 23
+  },
+  {
+    "nama": "Udang Galah Penjaga Arus",
+    "jenis": "Langka",
+    "minBerat": 0.2,
+    "maxBerat": 0.8,
+    "info": "Udang sungai besar dengan capit panjang yang berwarna biru.",
+    "harga": 500000,
+    "chance": 22
+  },
+  {
+    "nama": "Ikan Tapah Monster",
+    "jenis": "Legendaris",
+    "minBerat": 20,
+    "maxBerat": 80,
+    "info": "Ikan lele purba raksasa yang konon bisa memangsa hewan ternak.",
+    "harga": 800000,
+    "chance": 18
+  },
+  {
+    "nama": "Ikan Arwana Silver Liar",
+    "jenis": "Legendaris",
+    "minBerat": 3,
+    "maxBerat": 60,
+    "info": "Ikan naga yang melompat tinggi untuk menangkap serangga di atas air.",
+    "harga": 800000,
+    "chance": 18
+  },
+  {
+    "nama": "Labi-Labi Putih Mistik",
+    "jenis": "Mitos",
+    "minBerat": 5,
+    "maxBerat": 100,
+    "info": "Kura-kura punggung lunak yang sangat jarang terlihat oleh manusia.",
+    "harga": 950000,
+    "chance": 16
+  }
+]
+

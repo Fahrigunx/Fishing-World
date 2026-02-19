@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing World</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1a1a1a; color: #fff; margin: 0; padding: 20px; }
+        .screen { display: none; background: #2a2a2a; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); max-width: 600px; margin: auto; }
+        .active { display: block; }
+        button { background: #4CAF50; color: white; border: none; padding: 10px 15px; margin: 5px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #45a049; }
+        button:disabled { background: #555; cursor: not-allowed; }
+        button.sell-all { background: #d9534f; width: 100%; margin-top: 20px; } 
+        button.sell-all:hover { background: #c9302c; }
+        input { padding: 10px; font-size: 16px; width: calc(100% - 24px); margin-bottom: 10px; }
+        .log-box { background: #111; padding: 10px; height: 150px; overflow-y: auto; margin-top: 15px; border: 1px solid #444; }
+        .log-entry { margin-bottom: 5px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        h1, h2, h3 { color: #FFD700; }
+        .stats, .inventory-list, .shop-list { background: #333; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
+        .item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #555; padding: 5px 0; }
+        #time-display { font-weight: bold; color: #00FFFF; }
+    </style>
+</head>
+<body>
+
+    <div id="screen-login" class="screen active">
+        <h1>Selamat Datang di RPG Techs</h1>
+        <p>Silakan masukkan nama Anda untuk memulai petualangan memancing legendaris.</p>
+        <input type="text" id="player-name" placeholder="Nama Pemain">
+        <button onclick="startGame()">Mulai Game</button>
+    </div>
+
+    <div id="screen-main" class="screen">
+        <h1>Menu Utama</h1>
+        <p id="time-display"></p>
+        <div class="stats">
+            <p><strong>Nama:</strong> <span id="stat-name"></span></p>
+            <p><strong>Uang:</strong> Rp <span id="stat-money"></span></p>
+            <p><strong>Joran:</strong> <span id="stat-rod"></span></p>
+            <p><strong>Umpan:</strong> <span id="stat-bait"></span></p>
+            <p><strong>Medali:</strong> 🥇<span id="stat-gold"></span> | 🥈<span id="stat-silver"></span> | 🥉<span id="stat-bronze"></span></p>
+        </div>
+        <button onclick="nav('screen-fishing', 'Sungai')">Sungai</button>
+        <button onclick="nav('screen-fishing', 'Laut')">Laut</button>
+        <button onclick="nav('screen-fishing', 'Amazon')">Sungai Amazon</button>
+        <button onclick="nav('screen-fishing', 'Turnamen')">Turnamen</button>
+        <button onclick="nav('screen-shop', 'Toko')">Toko</button>
+        <button onclick="nav('screen-inventory', 'Inventori')">Inventori</button>
+        <button onclick="nav('screen-leaderboard', 'Papan Peringkat')">Papan Peringkat</button>
+        <button onclick="nav('screen-about', 'Tentang Game')">Tentang Game</button>
+        <button onclick="shareWA()">Share Profil & Game</button>
+    </div>
+
+    <div id="screen-fishing" class="screen">
+        <h1 id="fishing-title">Lokasi</h1>
+        <p id="fishing-time-display"></p>
+        <div class="stats">
+            <p><strong>Joran:</strong> <span id="fish-rod"></span></p>
+            <p><strong>Umpan:</strong> <span id="fish-bait"></span> (<span id="fish-bait-count"></span> tersisa)</p>
+            <p><strong>Total Berat Didapat:</strong> <span id="fish-weight">0</span> Kg</p>
+        </div>
+        <button id="btn-cast" onclick="castLine()">Lempar Kail</button>
+        <button id="btn-pull" onclick="pullLine()" style="display:none;">Tarik Pancing!</button>
+        <button onclick="nav('screen-main', 'Menu Utama')">Kembali ke Menu</button>
+        <div class="log-box" id="fishing-log" aria-live="polite"></div>
+    </div>
+
+    <div id="screen-inventory" class="screen">
+        <h1>Inventori</h1>
+        <button onclick="renderInventory('alat')">Alat</button>
+        <button onclick="renderInventory('umpan')">Umpan</button>
+        <button onclick="renderInventory('ikan')">Ikan</button>
+        <button onclick="nav('screen-main', 'Menu Utama')">Kembali</button>
+        <div class="inventory-list" id="inventory-container">Pilih kategori.</div>
+    </div>
+
+    <div id="screen-shop" class="screen">
+        <h1>Toko</h1>
+        <p>Uang Anda: Rp <span id="shop-money"></span></p>
+        <div class="shop-list" id="shop-container"></div>
+        <button onclick="nav('screen-main', 'Menu Utama')">Kembali</button>
+    </div>
+
+    <div id="screen-leaderboard" class="screen">
+        <h1>Papan Peringkat</h1>
+        <div class="stats" id="leaderboard-container"></div>
+        <button onclick="nav('screen-main', 'Menu Utama')">Kembali</button>
+    </div>
+
+    <div id="screen-about" class="screen">
+        <h1>Tentang Game</h1>
+        <div class="stats" style="text-align: justify; line-height: 1.6;">
+            <p>Game ini telah dimodifikasi sesuai permintaan.</p>
+        </div>
+        <button onclick="nav('screen-main', 'Menu Utama')">Kembali</button>
+    </div>
+
+<script>
+    // --- AUDIO SYSTEM ---
+    const audioFiles = {
+        bgm: {
+            main: new Audio('1.mp3'),
+            sungai: new Audio('sungai.m4a'),
+            laut: new Audio('laut.m4a'),
+            amazon: new Audio('Amazon.m4a'),
+            turnamen: new Audio('turnamen.m4a')
+        },
+        sfx: {
+            bite: new Audio('2.m4a'),
+            cast: new Audio('3.m4a'),
+            pull: new Audio('4.m4a'),
+            buy: new Audio('Buy.m4a'),
+            click: new Audio('klik.mp3')
+        }
+    };
+
+    // Konfigurasi Looping untuk BGM
+    for (let key in audioFiles.bgm) {
+        audioFiles.bgm[key].loop = true;
+    }
+
+    let currentBgm = null;
+
+    function playBgm(trackName) {
+        // Jika lagu yang diminta sudah main, jangan di-restart
+        if (currentBgm === audioFiles.bgm[trackName]) return;
+
+        // Stop lagu sebelumnya
+        if (currentBgm) {
+            currentBgm.pause();
+            currentBgm.currentTime = 0;
+        }
+
+        // Mainkan lagu baru
+        if (audioFiles.bgm[trackName]) {
+            currentBgm = audioFiles.bgm[trackName];
+            currentBgm.play().catch(e => console.log("Audio play error (user interaction needed):", e));
+        }
+    }
+
+    function playSfx(name) {
+        if (audioFiles.sfx[name]) {
+            // Clone node agar bisa overlap (bunyi cepat berturut-turut)
+            let sfx = audioFiles.sfx[name].cloneNode();
+            sfx.play().catch(e => console.log("SFX play error:", e));
+        }
+    }
+
+    // Event Listener Global untuk suara KLIK tombol
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'BUTTON') {
+            playSfx('click');
+        }
+    });
+
+    // --- STATE & DATA ---
+    // Menambahkan field 'savedTime' pada player default
+    let player = { 
+        name: "", 
+        money: 100000, 
+        gold: 0, 
+        silver: 0, 
+        bronze: 0, 
+        rod: "Joran Kayu", 
+        bait: "Umpan Roti", 
+        inventory: { alat: ["Joran Kayu"], umpan: { "Umpan Roti": 10 }, ikan: {} },
+        savedTime: null // Untuk menyimpan waktu terakhir
+    };
+    
+    let currentLocation = "";
+    let sessionWeight = 0;
+    let fishingTimer = null;
+    let currentFishHooked = null;
+    // Default waktu
+    let inGameTime = { month: 1, day: 1, hour: 6, dayName: "Senin" };
+    
+    let npcs = Array.from({length: 10}, (_, i) => ({ name: "NPC " + (i+1), money: Math.floor(Math.random()*5000), gold: Math.floor(Math.random()*5) }));
+    let tournamentActive = false;
+    let tournamentStats = [];
+
+    const db = {
+        tools: { "Joran Kayu": { power: 5, price: 0, catchChance: 10 }, "Joran Besi": { power: 15, price: 20000000, catchChance: 25 }, "Joran Emas": { power: 30, price: 100000000, catchChance: 45 }, "Joran Raksasa": { power: 100, price: 200000000, catchChance: 70 } },
+        baits: { "Umpan Roti": { price: 100000, catchChance: 5 }, "Umpan Cacing": { price: 500000, catchChance: 15 }, "Ikan Kecil": { price: 1000000, catchChance: 30 } },
+        Sungai: [ { nama: "Ikan Mas", jenis: "Normal", minBerat: 1, maxBerat: 5, info: "Ikan air tawar biasa.", harga: 50, chance: 80 }, { nama: "Ikan Lele Raksasa", jenis: "Langka", minBerat: 5, maxBerat: 15, info: "Sangat licin dan kuat.", harga: 200, chance: 20 } ],
+        Laut: [ { nama: "Ikan Tongkol", jenis: "Normal", minBerat: 2, maxBerat: 8, info: "Enak digoreng.", harga: 100, chance: 75 }, { nama: "Hiu Kecil", jenis: "Langka", minBerat: 15, maxBerat: 30, info: "Berbahaya jika tidak hati-hati.", harga: 1000, chance: 15 } ],
+        Amazon: [ { nama: "Arapaima", jenis: "Sangat Langka", minBerat: 50, maxBerat: 150, info: "Monster sungai Amazon.", harga: 5000, chance: 10 }, { nama: "Piranha", jenis: "Normal", minBerat: 1, maxBerat: 3, info: "Kecil tapi agresif.", harga: 300, chance: 60 } ],
+        Turnamen: [ { nama: "Ikan Turnamen Biasa", jenis: "Normal", minBerat: 5, maxBerat: 10, info: "Ikan khusus kompetisi.", harga: 150, chance: 70 }, { nama: "Ikan Mahkota", jenis: "Legendaris", minBerat: 20, maxBerat: 50, info: "Pemenang turnamen sejati.", harga: 2000, chance: 5 } ]
+    };
+
+    let fishData = { Sungai: [], Laut: [], Amazon: [], Turnamen: [] };
+
+    // --- INITIALIZATION ---
+    async function loadJSON() {
+        const locations = ['Sungai', 'Laut', 'Amazon', 'Turnamen'];
+        for (let loc of locations) {
+            try {
+                let res = await fetch(`ikan_${loc.toLowerCase()}.json`);
+                if(res.ok) fishData[loc] = await res.json();
+                else fishData[loc] = db[loc];
+            } catch (e) { fishData[loc] = db[loc]; }
+        }
+    }
+
+    function init() {
+        let saved = localStorage.getItem('rpg_techs_save');
+        if (saved) { 
+            player = JSON.parse(saved); 
+            // MODIFIKASI: Load waktu terakhir pemain, jika tidak ada pakai default
+            if (player.savedTime) {
+                inGameTime = player.savedTime;
+            }
+        }
+        loadJSON();
+        
+        // MODIFIKASI WAKTU: 
+        // 1 Jam Real = 3 Hari Game (72 Jam Game).
+        // 1 Jam Real = 3600 Detik.
+        // 3600 Detik / 72 Jam Game = 50 Detik per Jam Game.
+        setInterval(updateTime, 50000); 
+        
+        updateUI();
+    }
+
+    function startGame() {
+        let nameInput = document.getElementById('player-name').value;
+        if (!nameInput) { speak("Tolong masukkan nama Anda."); return; }
+        if(!player.name) { player.name = nameInput; }
+        speak("Selamat datang, " + player.name);
+        saveGame();
+        // Memulai musik latar utama saat masuk game
+        playBgm('main');
+        nav('screen-main', 'Menu Utama');
+    }
+
+    function saveGame() { 
+        // Simpan posisi waktu saat ini ke object player
+        player.savedTime = inGameTime;
+        localStorage.setItem('rpg_techs_save', JSON.stringify(player)); 
+    }
+
+    function speak(text) {
+        if (!window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+        let msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'id-ID';
+        window.speechSynthesis.speak(msg);
+    }
+
+    function logEvent(text) {
+        let box = document.getElementById('fishing-log');
+        box.innerHTML = `<div class="log-entry">${text}</div>` + box.innerHTML;
+        speak(text);
+    }
+
+    function updateTime() {
+        inGameTime.hour++;
+        if (inGameTime.hour >= 24) {
+            inGameTime.hour = 0;
+            inGameTime.day++;
+            const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+            let idx = days.indexOf(inGameTime.dayName) + 1;
+            inGameTime.dayName = days[idx > 6 ? 0 : idx];
+        }
+        if (inGameTime.day > 30) { inGameTime.day = 1; inGameTime.month++; }
+        
+        const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+        let timeStr = `${inGameTime.dayName}, Hari ${inGameTime.day} ${months[inGameTime.month-1]} - Jam ${inGameTime.hour.toString().padStart(2,'0')}:00`;
+        
+        if(document.getElementById('time-display')) document.getElementById('time-display').innerText = timeStr;
+        if(document.getElementById('fishing-time-display')) document.getElementById('fishing-time-display').innerText = timeStr;
+
+        if (tournamentActive && inGameTime.hour >= 16) { endTournament(); }
+        
+        // Simpan game setiap update waktu agar aman
+        saveGame();
+    }
+
+    function nav(screenId, title) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+        
+        document.getElementById('fishing-log').innerHTML = '';
+        clearTimeout(fishingTimer);
+        document.getElementById('btn-cast').style.display = 'inline-block';
+        document.getElementById('btn-pull').style.display = 'none';
+        sessionWeight = 0;
+
+        // MODIFIKASI: Logika Audio Latar Berdasarkan Layar/Lokasi
+        if (screenId === 'screen-main') { 
+            playBgm('main'); 
+            updateUI(); 
+            speak(title); 
+        }
+        else if (screenId === 'screen-shop') { 
+            playBgm('main'); // Toko pakai musik utama
+            setupShop(); 
+            speak("Membuka Toko."); 
+        }
+        else if (screenId === 'screen-inventory') { 
+            playBgm('main'); // Inventori pakai musik utama
+            document.getElementById('inventory-container').innerHTML = "Pilih kategori."; 
+            speak("Membuka Inventori."); 
+        }
+        else if (screenId === 'screen-fishing') { 
+            // Musik ditentukan di setupFishing berdasarkan lokasi
+            setupFishing(title); 
+        }
+        else if (screenId === 'screen-leaderboard') { 
+            playBgm('main'); 
+            setupLeaderboard(); 
+            speak("Membuka Papan Peringkat."); 
+        }
+        else if (screenId === 'screen-about') {
+            playBgm('main');
+            speak("Membuka " + title);
+        }
+        else { speak("Membuka " + title); }
+    }
+
+    function updateUI() {
+        document.getElementById('stat-name').innerText = player.name;
+        document.getElementById('stat-money').innerText = player.money;
+        document.getElementById('stat-rod').innerText = player.rod;
+        document.getElementById('stat-bait').innerText = player.bait || "Tidak ada";
+        document.getElementById('stat-gold').innerText = player.gold;
+        document.getElementById('stat-silver').innerText = player.silver;
+        document.getElementById('stat-bronze').innerText = player.bronze;
+    }
+
+    function setupFishing(loc) {
+        if (loc === 'Amazon' && player.rod !== 'Joran Raksasa') {
+            speak("Anda butuh Joran Raksasa untuk masuk ke Sungai Amazon!");
+            nav('screen-main', 'Menu Utama');
+            return;
+        }
+        
+        // Atur Musik Lokasi
+        if (loc === 'Sungai') playBgm('sungai');
+        else if (loc === 'Laut') playBgm('laut');
+        else if (loc === 'Amazon') playBgm('amazon');
+        else if (loc === 'Turnamen') playBgm('turnamen');
+
+        if (loc === 'Turnamen') {
+            if (inGameTime.dayName !== 'Minggu' || inGameTime.hour < 9 || inGameTime.hour >= 16) {
+                speak("Turnamen hanya buka hari Minggu jam 9 pagi sampai 4 sore.");
+                nav('screen-main', 'Menu Utama');
+                return;
+            }
+            if (player.money < 1000000) { speak("Uang tidak cukup untuk biaya daftar Turnamen."); nav('screen-main', 'Menu Utama'); return; }
+            player.money -= 1000000;
+            tournamentActive = true;
+            tournamentStats = npcs.map(n => ({name: n.name, weight: Math.floor(Math.random() * 50)}));
+            tournamentStats.push({name: player.name, weight: 0, isPlayer: true});
+            speak("Anda memasuki Turnamen!");
+        } else {
+            speak("Memasuki " + loc);
+        }
+
+        currentLocation = loc;
+        document.getElementById('fishing-title').innerText = loc;
+        updateFishingUI();
+    }
+
+    function updateFishingUI() {
+        document.getElementById('fish-rod').innerText = player.rod;
+        document.getElementById('fish-bait').innerText = player.bait || "Kosong";
+        document.getElementById('fish-bait-count').innerText = player.inventory.umpan[player.bait] || 0;
+        document.getElementById('fish-weight').innerText = sessionWeight.toFixed(2);
+    }
+
+    function castLine() {
+        let baitCount = player.inventory.umpan[player.bait] || 0;
+        if (baitCount <= 0) { logEvent("Umpan habis!"); return; }
+        
+        // AUDIO: Melempar kail
+        playSfx('cast');
+
+        player.inventory.umpan[player.bait] -= 1;
+        if(player.inventory.umpan[player.bait] === 0) delete player.inventory.umpan[player.bait];
+        updateFishingUI();
+        saveGame();
+
+        document.getElementById('btn-cast').style.display = 'none';
+        logEvent("Kail dilempar... menunggu.");
+        
+        let waitTime = Math.floor(Math.random() * 10) + 3; 
+        
+        fishingTimer = setTimeout(() => {
+            let rodBonus = db.tools[player.rod].catchChance;
+            let baitBonus = db.baits[player.bait] ? db.baits[player.bait].catchChance : 0;
+            let totalPlayerChance = rodBonus + baitBonus;
+
+            let pool = fishData[currentLocation];
+            let shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+            
+            let caught = null;
+            for (let fish of shuffledPool) {
+                let finalChance = fish.chance + (totalPlayerChance / 2); 
+                if (Math.random() * 100 <= finalChance) {
+                    caught = fish;
+                    break;
+                }
+            }
+
+            if (caught) {
+                // AUDIO: Ikan menyambar/nyangkut
+                playSfx('bite');
+
+                currentFishHooked = caught;
+                let weight = (Math.random() * (caught.maxBerat - caught.minBerat) + caught.minBerat).toFixed(2);
+                currentFishHooked.actualWeight = parseFloat(weight);
+                document.getElementById('btn-pull').style.display = 'inline-block';
+                logEvent("Ikan menyambar kail!");
+            } else {
+                logEvent("Sepertinya ikan kabur sebelum terpancing. Coba lagi.");
+                document.getElementById('btn-cast').style.display = 'inline-block';
+            }
+
+        }, waitTime * 1000);
+    }
+
+    function pullLine() {
+        clearTimeout(fishingTimer);
+        
+        // AUDIO: Menarik Pancing
+        playSfx('pull');
+
+        document.getElementById('btn-pull').style.display = 'none';
+        document.getElementById('btn-cast').style.display = 'inline-block';
+
+        let rodPower = db.tools[player.rod].power;
+        if (currentFishHooked.actualWeight > (rodPower * (Math.random() + 0.8))) {
+            logEvent(`Gagal! Ikan ${currentFishHooked.nama} terlalu berat untuk joran Anda.`);
+            return;
+        }
+
+        let fishName = currentFishHooked.nama;
+        logEvent(`Berhasil! Mendapat ${fishName} (${currentFishHooked.jenis}) ${currentFishHooked.actualWeight} Kg. ${currentFishHooked.info}.`);
+        
+        sessionWeight += currentFishHooked.actualWeight;
+        if(tournamentActive) {
+            let p = tournamentStats.find(x => x.isPlayer);
+            if(p) p.weight += currentFishHooked.actualWeight;
+        }
+        
+        if (!player.inventory.ikan[fishName]) player.inventory.ikan[fishName] = { count: 0, totalWeight: 0, price: currentFishHooked.harga };
+        player.inventory.ikan[fishName].count += 1;
+        player.inventory.ikan[fishName].totalWeight += currentFishHooked.actualWeight;
+        
+        updateFishingUI();
+        saveGame();
+    }
+
+    function endTournament() {
+        tournamentActive = false;
+        speak("Turnamen telah berakhir!");
+        tournamentStats.sort((a, b) => b.weight - a.weight);
+        let rank = tournamentStats.findIndex(x => x.isPlayer) + 1;
+        let p = tournamentStats.find(x => x.isPlayer);
+        let msg = `Turnamen Selesai! Peringkat ${rank} (${p.weight.toFixed(2)} Kg).`;
+        if(rank === 1) { player.gold++; msg += " Medali Emas!"; }
+        else if(rank === 2) { player.silver++; msg += " Medali Perak!"; }
+        else if(rank === 3) { player.bronze++; msg += " Medali Perunggu!"; }
+        logEvent(msg);
+        saveGame();
+    }
+
+    function renderInventory(category) {
+        let html = '';
+        if (category === 'alat') {
+            player.inventory.alat.forEach(a => {
+                html += `<div class="item"><span>${a}</span> <button onclick="equip('rod', '${a}')">Gunakan</button></div>`;
+            });
+        } else if (category === 'umpan') {
+            for (let u in player.inventory.umpan) {
+                html += `<div class="item"><span>${u} (${player.inventory.umpan[u]}x)</span> <button onclick="equip('bait', '${u}')">Gunakan</button></div>`;
+            }
+        } else if (category === 'ikan') {
+            // MODIFIKASI: Menambahkan tombol Jual Semua Inventory sekaligus
+            let hasFish = Object.keys(player.inventory.ikan).length > 0;
+            if(hasFish) {
+                html += `<button class="sell-all" onclick="sellAllInventory()">JUAL SEMUA IKAN DI INVENTORY</button><hr>`;
+            }
+            for (let i in player.inventory.ikan) {
+                let d = player.inventory.ikan[i];
+                html += `<div class="item"><span>${i} (x${d.count})</span> <div><button onclick="sellFish('${i}', false)">Jual 1</button><button onclick="sellFish('${i}', true)">Semua</button></div></div>`;
+            }
+        }
+        document.getElementById('inventory-container').innerHTML = html || "Kosong.";
+    }
+
+    function equip(type, item) {
+        if(type === 'rod') { player.rod = item; speak("Memakai " + item); }
+        if(type === 'bait') { player.bait = item; speak("Memakai " + item); }
+        saveGame();
+    }
+
+    function sellFish(name, sellAll) {
+        let data = player.inventory.ikan[name];
+        let amount = sellAll ? data.count : 1;
+        let profit = amount * data.price;
+        player.money += profit;
+        data.count -= amount;
+        if(data.count <= 0) delete player.inventory.ikan[name];
+        saveGame();
+        renderInventory('ikan');
+        speak("Terjual Rp " + profit);
+    }
+
+    // MODIFIKASI: Fungsi Baru Jual Semua
+    function sellAllInventory() {
+        let totalProfit = 0;
+        for (let i in player.inventory.ikan) {
+            let data = player.inventory.ikan[i];
+            totalProfit += (data.count * data.price);
+        }
+        
+        player.money += totalProfit;
+        player.inventory.ikan = {}; // Kosongkan semua ikan
+        
+        saveGame();
+        renderInventory('ikan');
+        
+        // AUDIO: Bunyi beli/transaksi (bisa pakai Buy.m4a sebagai notifikasi uang masuk)
+        playSfx('buy'); 
+        speak("Semua ikan terjual. Total keuntungan Rp " + totalProfit);
+        alert("Semua ikan terjual! Anda mendapatkan Rp " + totalProfit);
+    }
+
+    function setupShop() {
+        document.getElementById('shop-money').innerText = player.money;
+        let html = '<h3>Joran</h3>';
+        for (let t in db.tools) {
+            let p = db.tools[t].price;
+            if(p > 0) html += `<div class="item"><span>${t} (Rp ${p})</span> <button onclick="buyItem('alat', '${t}', ${p})">Beli</button></div>`;
+        }
+        html += '<h3>Umpan (x10)</h3>';
+        for (let b in db.baits) {
+            let p = db.baits[b].price * 10;
+            html += `<div class="item"><span>${b} (Rp ${p})</span> <button onclick="buyItem('umpan', '${b}', ${p})">Beli</button></div>`;
+        }
+        document.getElementById('shop-container').innerHTML = html;
+    }
+
+    function buyItem(cat, name, price) {
+        if (player.money < price) { alert("Uang tidak cukup!"); return; }
+        
+        // AUDIO: Pembelian berhasil
+        playSfx('buy');
+
+        player.money -= price;
+        if (cat === 'alat') { if(!player.inventory.alat.includes(name)) player.inventory.alat.push(name); } 
+        else if (cat === 'umpan') { player.inventory.umpan[name] = (player.inventory.umpan[name] || 0) + 10; }
+        saveGame();
+        setupShop();
+        speak("Berhasil membeli.");
+    }
+
+    function setupLeaderboard() {
+        let allPlayers = [...npcs, {name: player.name, money: player.money, gold: player.gold}].sort((a,b) => b.gold - a.gold || b.money - a.money);
+        let html = '<ol>';
+        allPlayers.forEach(p => { html += `<li>${p.name} - Emas: ${p.gold} | Rp ${p.money}</li>`; });
+        document.getElementById('leaderboard-container').innerHTML = html + '</ol>';
+    }
+
+    function shareWA() {
+        let gameUrl = window.location.href;
+        let text = `🎣 *RPG Techs: Fishing World* 🎣\n\n` +
+                   `Halo! Lihat pencapaian memancingku:\n` +
+                   `👤 Nama: ${player.name}\n` +
+                   `💰 Uang: Rp ${player.money}\n` +
+                   `🏆 Medali Emas: ${player.gold}\n` +
+                   `🎣 Joran: ${player.rod}\n\n` +
+                   `Ayo tanding denganku di sini:\n${gameUrl}`;
+        
+        let url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+        speak("Membagikan statistik.");
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
+

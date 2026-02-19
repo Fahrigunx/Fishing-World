@@ -1,0 +1,65 @@
+[
+  {
+    "nama": "Ikan mas ekor merah",
+    "jenis": "super",
+    "minBerat": 1,
+    "maxBerat": 15,
+    "info": "Ikan khusus ada diturnamen.",
+    "harga": 15000000,
+    "chance": 17
+  },
+  {
+    "nama": "Ikan Mujair",
+    "jenis": "Normal",
+    "minBerat": 0.3,
+    "maxBerat": 1.2,
+    "info": "Ikan air tawar yang sangat umum dan mudah berkembang biak.",
+    "harga": 25000,
+    "chance": 85
+  },
+  {
+    "nama": "Ikan Mas",
+    "jenis": "Normal",
+    "minBerat": 1,
+    "maxBerat": 5,
+    "info": "Ikan air tawar klasik yang sering ditemukan di sungai tenang.",
+    "harga": 20000,
+    "chance": 75
+  },
+  {
+    "nama": "Ikan Lele Lokal",
+    "jenis": "Normal",
+    "minBerat": 0.5,
+    "maxBerat": 3,
+    "info": "Ikan berkumis yang aktif mencari makan di dasar sungai.",
+    "harga": 45000,
+    "chance": 65
+  },
+  {
+    "nama": "Ikan Gurame Liar",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 7,
+    "info": "Ikan yang cerdik dan sangat tenang sebelum menyambar umpan.",
+    "harga": 95000,
+    "chance": 39
+  },
+  {
+    "nama": "Ikan Patin",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 15,
+    "info": "Kulitnya licin dan tidak bersisik, sangat kuat saat menarik senar.",
+    "harga": 100000,
+    "chance": 35
+  },
+  {
+    "nama": "Ikan mahkota merah",
+    "jenis": "Mitos",
+    "minBerat": 5,
+    "maxBerat": 100,
+    "info": "Ikan  yang sangat jarang terlihat oleh manusia, entah kenapa ada di sini.",
+    "harga": 35000000,
+    "chance": 16
+  }
+]

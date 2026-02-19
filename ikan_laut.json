@@ -1,0 +1,183 @@
+[
+  {
+    "nama": "Ikan Kembung",
+    "jenis": "Normal",
+    "minBerat": 0.3,
+    "maxBerat": 1,
+    "info": "Ikan kecil yang sering ditemukan di perairan dangkal.",
+    "harga": 25000,
+    "chance": 85
+  },
+  {
+    "nama": "Ikan Layang",
+    "jenis": "Normal",
+    "minBerat": 0.2,
+    "maxBerat": 0.8,
+    "info": "Ikan yang lincah dan sering dijadikan umpan ikan besar.",
+    "harga": 30000,
+    "chance": 80
+  },
+  {
+    "nama": "Ikan Baronang",
+    "jenis": "Normal",
+    "minBerat": 0.5,
+    "maxBerat": 2,
+    "info": "Pemakan lumut yang banyak hidup di sekitar dermaga.",
+    "harga": 35000,
+    "chance": 75
+  },
+  {
+    "nama": "Ikan Ekor Kuning",
+    "jenis": "Normal",
+    "minBerat": 0.4,
+    "maxBerat": 1.5,
+    "info": "Ikan konsumsi populer yang hidup berkelompok.",
+    "harga": 35000,
+    "chance": 70
+  },
+  {
+    "nama": "Ikan Cakalang",
+    "jenis": "Normal",
+    "minBerat": 1,
+    "maxBerat": 5,
+    "info": "Ikan yang aktif dan sangat cepat berenang.",
+    "harga": 40000,
+    "chance": 65
+  },
+  {
+    "nama": "Ikan Kakap Hitam",
+    "jenis": "Normal",
+    "minBerat": 0.8,
+    "maxBerat": 4,
+    "info": "Ikan yang kuat dan cerdik, sering memutus tali pancing.",
+    "harga": 45000,
+    "chance": 60
+  },
+  {
+    "nama": "Ikan Kakap Merah",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 10,
+    "info": "Ikan karang yang memiliki tenaga tarikan yang cukup kuat.",
+    "harga": 60050,
+    "chance": 50
+  },
+  {
+    "nama": "Ikan Kerapu Macan",
+    "jenis": "Langka",
+    "minBerat": 1.5,
+    "maxBerat": 8,
+    "info": "Sering bersembunyi di lubang karang, sulit untuk ditarik.",
+    "harga": 88000,
+    "chance": 45
+  },
+  {
+    "nama": "Ikan Kakap Putih",
+    "jenis": "Langka",
+    "minBerat": 1,
+    "maxBerat": 15,
+    "info": "Sering ditemukan di muara, dikenal sebagai Barramundi.",
+    "harga": 90000,
+    "chance": 40
+  },
+  {
+    "nama": "Ikan Barracuda",
+    "jenis": "Langka",
+    "minBerat": 2,
+    "maxBerat": 12,
+    "info": "Ikan dengan bentuk tubuh panjang dan gigi seperti silet.",
+    "harga": 92000,
+    "chance": 38
+  },
+  {
+    "nama": "Ikan Tenggiri",
+    "jenis": "Langka",
+    "minBerat": 3,
+    "maxBerat": 15,
+    "info": "Predator cepat dengan gigi yang tajam.",
+    "harga": 105000,
+    "chance": 35
+  },
+  {
+    "nama": "Ikan Bawal Laut",
+    "jenis": "Langka",
+    "minBerat": 0.5,
+    "maxBerat": 3,
+    "info": "Dagingnya sangat lezat dan memiliki nilai jual tinggi.",
+    "harga": 100000,
+    "chance": 32
+  },
+  {
+    "nama": "Ikan Mahi-Mahi",
+    "jenis": "Langka",
+    "minBerat": 3,
+    "maxBerat": 20,
+    "info": "Ikan berwarna hijau keemasan yang sangat cantik.",
+    "harga": 150000,
+    "chance": 28
+  },
+  {
+    "nama": "Ikan Kuwe Gerong (GT)",
+    "jenis": "Sangat Langka",
+    "minBerat": 5,
+    "maxBerat": 40,
+    "info": "Raja petarung di laut dangkal, tarikannya sangat eksplosif!",
+    "harga": 400000,
+    "chance": 34
+  },
+  {
+    "nama": "Ikan Pari Elang",
+    "jenis": "Sangat Langka",
+    "minBerat": 5,
+    "maxBerat": 50,
+    "info": "Bentuknya lebar, memberikan sensasi berat saat ditarik.",
+    "harga": 300000,
+    "chance": 36
+  },
+  {
+    "nama": "Ikan Tuna Sirip Kuning",
+    "jenis": "Sangat Langka",
+    "minBerat": 10,
+    "maxBerat": 80,
+    "info": "Ikan pelagis besar yang bermigrasi melintasi samudra.",
+    "harga": 620000,
+    "chance": 28
+  },
+  {
+    "nama": "Ikan Todak (Swordfish)",
+    "jenis": "Sangat Langka",
+    "minBerat": 20,
+    "maxBerat": 150,
+    "info": "Memiliki moncong panjang seperti pedang.",
+    "harga": 1500000,
+    "chance": 20
+  },
+  {
+    "nama": "Ikan Hiu Martil Kecil",
+    "jenis": "Sangat Langka",
+    "minBerat": 10,
+    "maxBerat": 40,
+    "info": "Bentuk kepalanya unik, predator yang sangat tangguh.",
+    "harga": 1000000,
+    "chance": 23
+  },
+  {
+    "nama": "Ikan Marlin Biru",
+    "jenis": "Legendaris",
+    "minBerat": 50,
+    "maxBerat": 300,
+    "info": "Ikan impian para pemancing, sangat kuat dan melompat-lompat.",
+    "harga": 2000000,
+    "chance": 19
+  },
+  {
+    "nama": "Ikan Kerapu Naga",
+    "jenis": "Legendaris",
+    "minBerat": 100,
+    "maxBerat": 400,
+    "info": "Raksasa laut yang jarang terlihat, hanya untuk pemancing pro!",
+    "harga": 2500000,
+    "chance": 15
+  }
+]
+
