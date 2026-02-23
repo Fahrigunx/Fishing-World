@@ -1,0 +1,183 @@
+[
+  {
+    "nama": "Piranha Mutan Mata Merah",
+    "jenis": "Langka",
+    "minBerat": 5,
+    "maxBerat": 15,
+    "info": "Hasil mutasi radioaktif, giginya bisa menembus plat baja.",
+    "harga": 5000000,
+    "chance": 35
+  },
+  {
+    "nama": "Payara si Gigi Pedang Langit",
+    "jenis": "Langka",
+    "minBerat": 20,
+    "maxBerat": 50,
+    "info": "Memiliki taring sepanjang 30cm yang mencuat dari rahang bawah.",
+    "harga": 8000000,
+    "chance": 30
+  },
+  {
+    "nama": "Ikan Paru Berbisa (Lungfish)",
+    "jenis": "Langka",
+    "minBerat": 15,
+    "maxBerat": 40,
+    "info": "Lendirnya mengandung racun saraf yang mematikan dalam hitungan detik.",
+    "harga": 12000000,
+    "chance": 25
+  },
+  {
+    "nama": "Ikan Pacu Bergigi Manusia Raksasa",
+    "jenis": "Langka",
+    "minBerat": 40,
+    "maxBerat": 90,
+    "info": "Gigi-giginya persis manusia namun berukuran 5 kali lipat lebih besar.",
+    "harga": 15000000,
+    "chance": 20
+  },
+  {
+    "nama": "Arapaima Pemakan Manusia",
+    "jenis": "Sangat Langka",
+    "minBerat": 200,
+    "maxBerat": 500,
+    "info": "Sisiknya sekeras berlian dan sangat agresif terhadap bayangan.",
+    "harga": 25000000,
+    "chance": 15
+  },
+  {
+    "nama": "Belut Listrik Megavolt",
+    "jenis": "Sangat Langka",
+    "minBerat": 80,
+    "maxBerat": 150,
+    "info": "Mampu mengeluarkan tegangan 5000 Volt yang menghanguskan air sekitarnya.",
+    "harga": 30000000,
+    "chance": 12
+  },
+  {
+    "nama": "Stingray Berduri Neraka",
+    "jenis": "Sangat Langka",
+    "minBerat": 100,
+    "maxBerat": 250,
+    "info": "Ekornya memiliki 5 duri beracun yang bisa melumpuhkan gajah.",
+    "harga": 48000000,
+    "chance": 10
+  },
+  {
+    "nama": "Goliath Catfish Bermata Tiga",
+    "jenis": "Sangat Langka",
+    "minBerat": 300,
+    "maxBerat": 700,
+    "info": "Ikan lele raksasa yang bisa melihat pergerakan di dimensi lain.",
+    "harga": 55000000,
+    "chance": 8
+  },
+  {
+    "nama": "Bull Shark Adaptasi Tawar",
+    "jenis": "Sangat Langka",
+    "minBerat": 250,
+    "maxBerat": 600,
+    "info": "Hiu laut yang berevolusi untuk merajai sungai Amazon.",
+    "harga": 65000000,
+    "chance": 7
+  },
+  {
+    "nama": "Black Caiman Raksasa Purba",
+    "jenis": "Sangat Langka",
+    "minBerat": 600,
+    "maxBerat": 1200,
+    "info": "Predator puncak yang seharusnya sudah punah jutaan tahun lalu.",
+    "harga": 75000000,
+    "chance": 5
+  },
+  {
+    "nama": "Candiru Raksasa Penghisap Sumsum",
+    "jenis": "Eksklusif",
+    "minBerat": 10,
+    "maxBerat": 25,
+    "info": "Kecil namun mematikan, ia masuk ke dalam tubuh mangsanya dari dalam.",
+    "harga": 45000000,
+    "chance": 6
+  },
+  {
+    "nama": "Lumba-Lumba Merah Muda Terkutuk",
+    "jenis": "Mitos",
+    "minBerat": 150,
+    "maxBerat": 300,
+    "info": "Konon adalah jelmaan penyihir sungai yang mencari tumbal.",
+    "harga": 90000000,
+    "chance": 4
+  },
+  {
+    "nama": "Hydra Amazon berkepala Tujuh",
+    "jenis": "Mitos",
+    "minBerat": 2000,
+    "maxBerat": 8000,
+    "info": "Setiap kepala memiliki kepribadian dan cara menyerang yang berbeda.",
+    "harga": 150000000,
+    "chance": 1
+  },
+  {
+    "nama": "Ikan Arwana Emas Hitam Purba",
+    "jenis": "Legendaris",
+    "minBerat": 100,
+    "maxBerat": 200,
+    "info": "Hanya muncul saat gerhana matahari di pedalaman Amazon.",
+    "harga": 150000000,
+    "chance": 3
+  },
+  {
+    "nama": "Singing Siren Fish",
+    "jenis": "Legendaris",
+    "minBerat": 20,
+    "maxBerat": 60,
+    "info": "Suaranya membuat pemancing tidak sadar dan melompat ke air.",
+    "harga": 250000000,
+    "chance": 2
+  },
+  {
+    "nama": "Mapinguari Air (Sloth Monster)",
+    "jenis": "Misterius",
+    "minBerat": 800,
+    "maxBerat": 2000,
+    "info": "Makhluk berbulu yang hidup di dasar sungai, baunya sangat busuk.",
+    "harga": 200000000,
+    "chance": 2.5
+  },
+  {
+    "nama": "Ikan Transparan Pemakan Jiwa",
+    "jenis": "Tak Terbayangkan",
+    "minBerat": 0.1,
+    "maxBerat": 1,
+    "info": "Tubuhnya tidak terlihat, hanya matanya yang bersinar merah di kegelapan.",
+    "harga": 300000000,
+    "chance": 1.5
+  },
+  {
+    "nama": "Abyssal Amazon Maw",
+    "jenis": "Tak Terbayangkan",
+    "minBerat": 1000,
+    "maxBerat": 5000,
+    "info": "Hanyalah mulut raksasa tanpa tubuh yang mengambang di dasar sungai.",
+    "harga": 450000000,
+    "chance": 1
+  },
+  {
+    "nama": "Yacu-Mama (Ibu Air)",
+    "jenis": "Dewa Sungai",
+    "minBerat": 5000,
+    "maxBerat": 15000,
+    "info": "Ular raksasa yang menyerupai arus sungai, mampu menelan kapal.",
+    "harga": 400000000,
+    "chance": 0.5
+  },
+  {
+    "nama": "The Observer (Penunggu Dimensi Sungai)",
+    "jenis": "Cosmic",
+    "minBerat": 9999,
+    "maxBerat": 99999,
+    "info": "Makhluk yang tidak memiliki bentuk tetap, eksistensinya menghancurkan nalar.",
+    "harga": 999999000,
+    "chance": 0.1
+  }
+]
+

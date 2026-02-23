@@ -5,7 +5,7 @@
     "minBerat": 0.3,
     "maxBerat": 1,
     "info": "Ikan kecil yang sering ditemukan di perairan dangkal.",
-    "harga": 25000,
+    "harga": 150000,
     "chance": 85
   },
   {
@@ -14,7 +14,7 @@
     "minBerat": 0.2,
     "maxBerat": 0.8,
     "info": "Ikan yang lincah dan sering dijadikan umpan ikan besar.",
-    "harga": 30000,
+    "harga": 80000,
     "chance": 80
   },
   {
@@ -23,7 +23,7 @@
     "minBerat": 0.5,
     "maxBerat": 2,
     "info": "Pemakan lumut yang banyak hidup di sekitar dermaga.",
-    "harga": 35000,
+    "harga": 85000,
     "chance": 75
   },
   {
@@ -32,7 +32,7 @@
     "minBerat": 0.4,
     "maxBerat": 1.5,
     "info": "Ikan konsumsi populer yang hidup berkelompok.",
-    "harga": 35000,
+    "harga": 85000,
     "chance": 70
   },
   {
@@ -41,7 +41,7 @@
     "minBerat": 1,
     "maxBerat": 5,
     "info": "Ikan yang aktif dan sangat cepat berenang.",
-    "harga": 40000,
+    "harga": 200000,
     "chance": 65
   },
   {
@@ -50,7 +50,7 @@
     "minBerat": 0.8,
     "maxBerat": 4,
     "info": "Ikan yang kuat dan cerdik, sering memutus tali pancing.",
-    "harga": 45000,
+    "harga": 450000,
     "chance": 60
   },
   {
@@ -59,7 +59,7 @@
     "minBerat": 2,
     "maxBerat": 10,
     "info": "Ikan karang yang memiliki tenaga tarikan yang cukup kuat.",
-    "harga": 60050,
+    "harga": 700500,
     "chance": 50
   },
   {
@@ -68,7 +68,7 @@
     "minBerat": 1.5,
     "maxBerat": 8,
     "info": "Sering bersembunyi di lubang karang, sulit untuk ditarik.",
-    "harga": 88000,
+    "harga": 880000,
     "chance": 45
   },
   {
@@ -77,7 +77,7 @@
     "minBerat": 1,
     "maxBerat": 15,
     "info": "Sering ditemukan di muara, dikenal sebagai Barramundi.",
-    "harga": 90000,
+    "harga": 900000,
     "chance": 40
   },
   {
@@ -86,7 +86,7 @@
     "minBerat": 2,
     "maxBerat": 12,
     "info": "Ikan dengan bentuk tubuh panjang dan gigi seperti silet.",
-    "harga": 92000,
+    "harga": 1200000,
     "chance": 38
   },
   {
@@ -95,7 +95,7 @@
     "minBerat": 3,
     "maxBerat": 15,
     "info": "Predator cepat dengan gigi yang tajam.",
-    "harga": 105000,
+    "harga": 1050000,
     "chance": 35
   },
   {
@@ -104,7 +104,7 @@
     "minBerat": 0.5,
     "maxBerat": 3,
     "info": "Dagingnya sangat lezat dan memiliki nilai jual tinggi.",
-    "harga": 100000,
+    "harga": 1000000,
     "chance": 32
   },
   {
@@ -113,7 +113,7 @@
     "minBerat": 3,
     "maxBerat": 20,
     "info": "Ikan berwarna hijau keemasan yang sangat cantik.",
-    "harga": 150000,
+    "harga": 1500000,
     "chance": 28
   },
   {
@@ -122,7 +122,7 @@
     "minBerat": 5,
     "maxBerat": 40,
     "info": "Raja petarung di laut dangkal, tarikannya sangat eksplosif!",
-    "harga": 400000,
+    "harga": 1000000,
     "chance": 34
   },
   {
@@ -131,7 +131,7 @@
     "minBerat": 5,
     "maxBerat": 50,
     "info": "Bentuknya lebar, memberikan sensasi berat saat ditarik.",
-    "harga": 300000,
+    "harga": 3000000,
     "chance": 36
   },
   {
@@ -140,7 +140,7 @@
     "minBerat": 10,
     "maxBerat": 80,
     "info": "Ikan pelagis besar yang bermigrasi melintasi samudra.",
-    "harga": 620000,
+    "harga": 6200000,
     "chance": 28
   },
   {
@@ -149,7 +149,7 @@
     "minBerat": 20,
     "maxBerat": 150,
     "info": "Memiliki moncong panjang seperti pedang.",
-    "harga": 1500000,
+    "harga": 5500000,
     "chance": 20
   },
   {
@@ -158,7 +158,7 @@
     "minBerat": 10,
     "maxBerat": 40,
     "info": "Bentuk kepalanya unik, predator yang sangat tangguh.",
-    "harga": 1000000,
+    "harga": 6000000,
     "chance": 23
   },
   {
@@ -167,7 +167,7 @@
     "minBerat": 50,
     "maxBerat": 300,
     "info": "Ikan impian para pemancing, sangat kuat dan melompat-lompat.",
-    "harga": 2000000,
+    "harga": 9000000,
     "chance": 19
   },
   {
@@ -176,7 +176,7 @@
     "minBerat": 100,
     "maxBerat": 400,
     "info": "Raksasa laut yang jarang terlihat, hanya untuk pemancing pro!",
-    "harga": 2500000,
+    "harga": 9500000,
     "chance": 15
   }
 ]
